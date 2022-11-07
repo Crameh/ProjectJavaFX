@@ -33,7 +33,7 @@ public class DBManager {
     public Connection Connector(){
         try {
             Connection connection =
-                    DriverManager.getConnection("jdbc:mysql://localhost:3306/student?serverTimezone=Europe%2FParis", "root","LtIbzOuzxz1397!");
+                    DriverManager.getConnection("jdbc:mysql://localhost:3306/student?serverTimezone=Europe%2FParis", "root","root");
             return connection;
         }
         catch (Exception e) {
