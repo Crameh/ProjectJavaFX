@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -126,11 +127,11 @@ public class StudentController implements Initializable {
                     Image image = new Image(selectedStudent.getPhoto());
                     photo.setImage(image);
                 } catch (Exception e) {
-                    Image image = new Image("https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png");
-                    photo.setImage(image);
+                    //Image image = new Image("https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png");
+                    //photo.setImage(image);
                     System.out.println(e);
                 }
-
+                changeBtn(true);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -143,6 +144,7 @@ public class StudentController implements Initializable {
             students = FXCollections.observableArrayList(listStudents);
             list_student.setItems(students);
         }
+        changeBtn(true);
     }
     public void onNew(){
         list_student.getSelectionModel().clearSelection();
@@ -154,6 +156,7 @@ public class StudentController implements Initializable {
         this.comments.setText("");
         this.path.setText("");
         displayAverageMark();
+        changeBtn(false);
     }
     public void onSave() {
         Student s = new Student(name.getText(),gender_box.getValue(), email.getText(), birth_date.getValue(), path.getText(), (mark.getText().trim().isEmpty()) ? -1.0 : new Double(mark.getText()), comments.getText());
@@ -161,9 +164,11 @@ public class StudentController implements Initializable {
         manager.addStudent(s);
         fetchStudents();
         displayAverageMark();
+        changeBtn(true);
     }
     public void onCancel(){
         list_student.getSelectionModel().selectFirst();
+        changeBtn(true);
     }
     public void onDelete(){
         if(list_student.getSelectionModel().getSelectedItem()!=null){
@@ -172,6 +177,7 @@ public class StudentController implements Initializable {
             fetchStudents();
         }
         displayAverageMark();
+        changeBtn(true);
     }
     public void onEdit() {
         if(list_student.getSelectionModel().getSelectedItem()!=null){
@@ -180,5 +186,12 @@ public class StudentController implements Initializable {
             fetchStudents();
         }
         displayAverageMark();
+        changeBtn(true);
+    }
+    public void changeBtn(boolean sc) {
+        this.button_save.setDisable(sc);
+        this.button_cancel.setDisable(sc);
+        this.button_edit.setDisable(!sc);
+        this.button_delete.setDisable(!sc);
     }
 }

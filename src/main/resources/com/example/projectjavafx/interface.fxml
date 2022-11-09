@@ -27,9 +27,7 @@
       <TextField fx:id="mark" layoutX="260.0" layoutY="291.0" />
       <ListView fx:id="list_student" layoutX="14.0" layoutY="56.0" prefHeight="282.0" prefWidth="200.0" />
       <ImageView fx:id="photo" fitHeight="129.0" fitWidth="166.0" layoutX="486.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../../../root_me/Stegano/ch1.png" />
-         </image>
+
       </ImageView>
       <Label fx:id="label_list_student" layoutX="28.0" layoutY="28.0" text="List of students">
          <font>
